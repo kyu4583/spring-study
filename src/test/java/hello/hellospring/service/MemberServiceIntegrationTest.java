@@ -1,6 +1,7 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
@@ -19,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class MemberServiceIntegrationTest {
 
     @Autowired MemberService memberService;
-    @Autowired MemoryMemberRepository memberRepository;
+    @Autowired MemberRepository memberRepository;
 
     @Test
     void 회원가입테스트() {
@@ -35,6 +36,7 @@ class MemberServiceIntegrationTest {
         Assertions.assertThat(member.getId()).isEqualTo(findMember.get().getId());
     }
 
+    @Test
     public void 중복_회원_예외() {
         //given
         Member member1 = new Member();
